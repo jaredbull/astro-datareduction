@@ -1,35 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[8]:
-
-
-import jupyterthemes as jt
-from jupyterthemes import get_themes
-from jupyterthemes.stylefx import set_nb_theme
-
-
-# In[2]:
-
-
-get_ipython().system('jt -l')
-
-
-# In[13]:
-
-
-get_ipython().system('jt -t oceans16 -T -N -kl')
-
-
-# In[12]:
-
-
-get_ipython().system('jt -r')
-
-
-# In[16]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 from glob import glob
