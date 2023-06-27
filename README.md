@@ -7,3 +7,6 @@ CCD calibration:
 
 List/array manipulation:
 - listmax_remove.py (remove 2 largest values from list1 and associated values from list2 asuuming both are in same order)
+
+Other:
+- jupyterthemes.ipynb (set jupyter notebook to darkmode)
