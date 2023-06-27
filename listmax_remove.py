@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
-
-
 # removing 2 largest values from list1 and associated values from list2
 
 # ex. removing x largest values from unordered list of variances and removing associated mean counts from second list 
