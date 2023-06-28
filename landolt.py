@@ -39,7 +39,6 @@ V_BminusV.shape
 # plotting V as a function of B-V for set of standard stars
 
 plt.scatter(V_BminusV[:,1],V_BminusV[:,0])
-plt.gca().invert_xaxis()
 plt.gca().invert_yaxis()
 plt.xlabel('B-V')
 plt.ylabel('V')
@@ -52,7 +51,6 @@ plt.ylabel('V')
 
 V_BminusV = np.loadtxt('E:/work/landolt_110.txt',dtype='float',usecols=(9,10))
 plt.scatter(V_BminusV[:,1],V_BminusV[:,0])
-plt.gca().invert_xaxis()
 plt.gca().invert_yaxis()
 plt.xlabel('B-V')
 plt.ylabel('V')
