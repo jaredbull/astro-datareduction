@@ -2,8 +2,11 @@ Assorted work/code used for various astro data reduction/processing
 
 All work here can be used for future reference and be transferred across workstations
 
+Data analysis:
+- landolt.py (read in data from list of landolt standard stars and plot their magnitudes as a function of color)
+
 CCD calibration:
-- ccd_darksanalysis.py (plots/fits mean dark counts as a function of exposure time, calculate dark current)
+- ccd_darkcurrent.py (plots/fits mean dark counts as a function of exposure time, calculate dark current)
 
 List/array manipulation:
 - listmax_remove.py (remove 2 largest values from list1 and associated values from list2 asuuming both are in same order)
