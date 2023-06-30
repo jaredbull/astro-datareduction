@@ -13,3 +13,4 @@ List/array manipulation:
 
 Other:
 - jupyterthemes.ipynb (set jupyter notebook to darkmode)
+  - If there are issues displaying matplotlib plots, use command 'plt.style.use('default')' or 'plt.style.use('dark_background')' for improved visibility
