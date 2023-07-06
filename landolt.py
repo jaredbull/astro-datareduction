@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[1]:
 
 
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 import numpy as np
 import pandas as pd
 from astropy import units as u
@@ -60,7 +61,7 @@ plt.xlabel('B-V')
 plt.ylabel('V')
 
 
-# In[2]:
+# In[3]:
 
 
 # reading in data for RA and DEC for all stars
@@ -70,7 +71,7 @@ landolt_radec = pd.read_table('E:/work/landolt_110.txt',header=None,usecols=[0,2
 landolt_radec
 
 
-# In[7]:
+# In[4]:
 
 
 # making lists of RA and DEC for all stars in set
@@ -81,10 +82,15 @@ c = SkyCoord(RA,DEC,unit=(u.hourangle, u.deg))
 c
 
 
-# In[26]:
+# In[9]:
 
+
+FOV = np.sqrt(50)
 
 plt.scatter(c.ra.degree,c.dec.degree)
+r = Rectangle((c.ra.degree.mean() - FOV/2,c.dec.degree.mean() - FOV/2),width=FOV,height=FOV
+          ,edgecolor='black',facecolor='none')
+plt.gca().add_patch(r)
 plt.gca().invert_xaxis()
 plt.grid()
 plt.xlabel('RA (Deg)')
