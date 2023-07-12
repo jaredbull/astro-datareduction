@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import numpy as np
 import pandas as pd
+import os
+from glob import glob
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 
@@ -96,3 +98,48 @@ plt.grid()
 plt.xlabel('RA (Deg)')
 plt.ylabel('DEC (Deg)')
 
+# plotting multiple sets of landolt stars
+
+%matplotlib qt # plots in interactive window
+FOV = 1.41 # fov of apogee attached to celestron 6se (symmetic)
+landolt_dir = glob('C:/Users/jbull/OneDrive/Documents/School/Apogee-SBIG/landolt/*.txt')
+for i in landolt_dir:
+    V_BminusV = pd.read_table(i,header=None,usecols=[0,4,5])
+    
+    landolt_radec = pd.read_table(i,header=None,usecols=[0,2,3])
+    RA = landolt_radec[2]
+    DEC = landolt_radec[3]
+    c = SkyCoord(RA,DEC,unit=(u.hourangle, u.deg))
+    
+    fig,(ax1,ax2) = plt.subplots(nrows=1,ncols=2,figsize=(10,5))
+
+    # plotting magnitude as a function of color
+    ax1.scatter(V_BminusV[5],V_BminusV[4])
+    ax1.invert_yaxis()
+    ax1.grid()
+    ax1.set_xlabel('B-V')
+    ax1.set_ylabel('V')
+    
+    ax2.scatter(c.ra.degree,c.dec.degree)
+    
+    # plotting fov of apogee attached to celestron 6se
+    # method for framing fovs is not optimized to include maximum # of targets
+    r = Rectangle((c.ra.degree.mean() - FOV/2,c.dec.degree.mean() - FOV/2),width=FOV,height=FOV
+          ,edgecolor='blue',facecolor='none',label='Apogee')
+    
+    # plotting fov of sbig attached to celestron 6se (non-symmetric)
+    r2 = Rectangle((c.ra.degree.mean() - 0.69/2,c.dec.degree.mean() - 0.5165/2),width=0.69,height=0.5165
+          ,edgecolor='red',facecolor='none',label='SBIG')
+    
+    ax2.add_patch(r)
+    ax2.add_patch(r2)
+    ax2.invert_xaxis()
+    ax2.grid()
+    ax2.set_xlabel('RA (Deg)')
+    ax2.set_ylabel('DEC (Deg)')
+
+    plt.suptitle(os.path.basename(i)) # sets title to filename rather than entire path
+    plt.tight_layout()
+    plt.legend()
+    plt.waitforbuttonpress(timeout=-1) # setting to -1 removes timeout
+    plt.close()
